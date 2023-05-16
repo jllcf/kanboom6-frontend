@@ -48,7 +48,7 @@ function Login() {
                 <div>
                 <input type='text' 
                 name='password' 
-                placeholder='Senha' 
+                placeholder='Password' 
                 onChange={valorInput} />
                 </div>
                 <div>
