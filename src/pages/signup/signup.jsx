@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Fragment } from "react";
-import logo from "/logo.png";
+import logo from "../../assets/logo.png";
 import WebFont from "webfontloader";
 
 WebFont.load({
@@ -11,18 +11,14 @@ WebFont.load({
 });
 
 const Signup = ({ setUser }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch("/api/kanboom/users", {
+      const response = await fetch("/api/users/", {
         headers: {
           "Content-Type": "application/json",
         },
@@ -57,21 +53,9 @@ const Signup = ({ setUser }) => {
             <h3> Crie sua conta! </h3>
           </div>
           <form onSubmit={handleSubmit(onSubmit)} className="form-login">
-            <input
-              className="input"
-              type="string"
-              {...register("user_name")}
-              placeholder="Nome"
-              required
-            />
+            <input className="input" type="string" {...register("user_name")} placeholder="Nome" required />
             <div className="row">
-              <input
-                className="input"
-                type="email"
-                {...register("user_email")}
-                placeholder="E-mail"
-                required
-              />
+              <input className="input" type="email" {...register("user_email")} placeholder="E-mail" required />
             </div>
             <div>
               <input
