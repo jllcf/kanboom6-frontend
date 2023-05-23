@@ -1,6 +1,8 @@
 import { Fragment, useState } from "react";
 import { useForm } from "react-hook-form";
 import logo from "../../../assets/logo.png";
+import Loading from "../../../utils/Loading";
+import { Link } from "react-router-dom";
 
 const SignupForm = ({ setSignupSuccess }) => {
   const {
@@ -9,11 +11,11 @@ const SignupForm = ({ setSignupSuccess }) => {
     setError,
     formState: { errors },
   } = useForm();
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (data) => {
     try {
+      setIsLoading(true);
       const response = await fetch("/api/users/", {
         headers: {
           "Content-Type": "application/json",
@@ -32,73 +34,118 @@ const SignupForm = ({ setSignupSuccess }) => {
       }
     } catch (error) {
       console.error("Erro ao enviar formulário", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  console.log(errors);
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const handleConfirmPasswordChange = (event) => {
-    setConfirmPassword(event.target.value);
-  };
-
-  const passwordMatch = password === confirmPassword;
   return (
     <Fragment>
-      <div className="top">
-        <div className="databox">
-          <img src={logo} alt="Logo" />
-          <div id="title">
-            <h3> Crie sua conta! </h3>
-          </div>
-          <form onSubmit={handleSubmit(onSubmit)} className="form-login">
-            <input className="input" type="string" {...register("user_name")} placeholder="Nome" required />
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-10 col-md-8 col-lg-4 bg-white rounded-2 my-3 credential-panel">
             <div className="row">
-              <input className="input" {...register("user_email")} placeholder="E-mail" required />
+              <div className="col-12 d-flex justify-content-center">
+                <img className="img" src={logo} alt="logo" />
+              </div>
             </div>
-            <div>
-              <input
-                className="input"
-                type="password"
-                {...register("user_password")}
-                placeholder="Senha"
-                value={password}
-                onChange={handlePasswordChange}
-                required
-              />
+            <div className="row">
+              <div className="col-12 d-flex justify-content-center">
+                <h3 className="login-title">Crie Sua Conta!</h3>
+              </div>
             </div>
-            <div>
-              <input
-                className="input"
-                type="password"
-                placeholder="Confirme sua senha"
-                value={confirmPassword}
-                onChange={handleConfirmPasswordChange}
-                required
-              />
-              {!passwordMatch && <span>As senhas não coincidem</span>}
-            </div>
-            <div>
-              <button className="button" type="submit">
-                Entrar
-              </button>
-            </div>
-            <div className="footer">
-              <p> Já tem uma conta? Clique </p> <a href="#">aqui</a>
-            </div>
-          </form>
-          {errors && errors?.root?.serverError?.message && (
-            <div>
-              <ul>
-                {errors.root.serverError.message.map((error, index) => (
-                  <li key={`error-${index}`}>{error}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+            {errors && errors?.root?.serverError?.message && (
+              <div className="alert alert-danger mt-3">
+                <ul className="d-flex  align-items-center mb-0 p-0">
+                  {[errors.root.serverError.message].map((error, index) => (
+                    <li className="list-group-item" key={`error-${index}`}>
+                      <i className="bi bi-exclamation-triangle-fill me-2"></i> {error}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <form onSubmit={handleSubmit(onSubmit)} className="form-login">
+              <div className="row">
+                <div className="col-12">
+                  <input
+                    className="form-control my-2"
+                    type="string"
+                    {...register("user_name", {
+                      required: true,
+                    })}
+                    placeholder="Nome"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col-12">
+                  <input
+                    className="form-control my-2"
+                    {...register("user_email", {
+                      required: true,
+                    })}
+                    placeholder="E-mail"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-12">
+                  <input
+                    className="form-control my-2"
+                    type="password"
+                    {...register("user_password", {
+                      required: true,
+                    })}
+                    placeholder="Senha"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-12">
+                  <input
+                    className="form-control my-2"
+                    type="password"
+                    placeholder="Confirme sua senha"
+                    {...register("user_repeatPassword", {
+                      required: true,
+                    })}
+                  />
+                </div>
+              </div>
+              <div>
+                <div className="row mt-2 mb-3">
+                  <div className="col-12">
+                    {isLoading ? (
+                      <Loading />
+                    ) : (
+                      <button className="btn-primary-kanboom form-control" type="submit">
+                        cadastrar
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="mb-2">
+                <p className="login-paragraph mb-0 text-center">
+                  Já tem uma conta? Clique <Link to="/login">aqui</Link> para entrar.
+                </p>
+              </div>
+            </form>
+            {errors && errors?.root?.serverError?.message && (
+              <div>
+                <ul>
+                  {errors.root.serverError.message.map((error, index) => (
+                    <li key={`error-${index}`}>{error}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </Fragment>

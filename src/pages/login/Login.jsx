@@ -1,7 +1,6 @@
 import { useState } from "react";
 import logo from "../../assets/logo.png";
 import Loading from "../../utils/Loading";
-import "./css/Login.css";
 
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -45,7 +44,7 @@ function Login() {
   return (
     <div className="container">
       <div className="row justify-content-center">
-        <div className="col-10 col-md-8 col-lg-4 bg-white rounded-2 my-3">
+        <div className="col-10 col-md-8 col-lg-4 bg-white rounded-2 my-3 credential-panel">
           <div className="row">
             <div className="col-12 d-flex justify-content-center">
               <img className="img" src={logo} alt="logo" />
@@ -111,7 +110,7 @@ function Login() {
           <div className="mb-2">
             <div className="row">
               <div className="col-12 d-flex justify-content-center text-center">
-                <Link to="/" className="login-paragraph mb-0 text-decoration-none">
+                <Link to="/" className="login-paragraph mb-0">
                   Esqueci Minha Senha
                 </Link>
               </div>
@@ -119,7 +118,7 @@ function Login() {
 
             <div className="row">
               <div className="col-12 d-flex justify-content-center text-center">
-                <Link to="/" className="login-paragraph mb-0 text-decoration-none">
+                <Link to="/cadastro" className="login-paragraph mb-0 text-decoration-none">
                   Ainda não tem uma conta? Clique <span className="text-decoration-underline">aqui</span>.
                 </Link>
               </div>

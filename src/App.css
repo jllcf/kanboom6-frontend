@@ -42,3 +42,7 @@ input.form-control:hover {
   line-height: 29px;
   color: #0052cc;
 }
+
+.credential-panel {
+  outline: 2px solid #cacfda;
+}
