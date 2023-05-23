@@ -3,17 +3,20 @@ import { useForm } from "react-hook-form";
 import logo from "../../../assets/logo.png";
 import Loading from "../../../utils/Loading";
 import { Link } from "react-router-dom";
+import { ErrorMessage } from "@hookform/error-message";
 
 const SignupForm = ({ setSignupSuccess }) => {
   const {
     register,
     handleSubmit,
     setError,
+    watch,
     formState: { errors },
   } = useForm();
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (data) => {
+    const body = { user_email: data.user_email, user_password: data.user_password, user_name: data.user_name };
     try {
       setIsLoading(true);
       const response = await fetch("/api/users/", {
@@ -21,7 +24,7 @@ const SignupForm = ({ setSignupSuccess }) => {
           "Content-Type": "application/json",
         },
         method: "POST",
-        body: JSON.stringify(data),
+        body: JSON.stringify(body),
       });
       const parseResponse = await response.json();
       if (parseResponse.type === "success") {
@@ -113,7 +116,19 @@ const SignupForm = ({ setSignupSuccess }) => {
                     placeholder="Confirme sua senha"
                     {...register("user_repeatPassword", {
                       required: true,
+                      validate: (value) => value === watch("user_password"),
                     })}
+                  />
+                  <ErrorMessage
+                    errors={errors}
+                    name="user_repeatPassword"
+                    message="Senhas devem coincidir"
+                    render={({ message }) => (
+                      <div className="alert alert-danger mt-3">
+                        <i className="bi bi-exclamation-triangle-fill me-2"></i>
+                        {message}
+                      </div>
+                    )}
                   />
                 </div>
               </div>
@@ -136,15 +151,6 @@ const SignupForm = ({ setSignupSuccess }) => {
                 </p>
               </div>
             </form>
-            {errors && errors?.root?.serverError?.message && (
-              <div>
-                <ul>
-                  {errors.root.serverError.message.map((error, index) => (
-                    <li key={`error-${index}`}>{error}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
           </div>
         </div>
       </div>
