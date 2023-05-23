@@ -3,7 +3,7 @@ import logo from "../../assets/logo.png";
 import Loading from "../../utils/Loading";
 
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const {
@@ -14,6 +14,7 @@ function Login() {
   } = useForm();
 
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     setIsLoading(true);
@@ -28,6 +29,7 @@ function Login() {
       const parseResponse = await response.json();
       if (parseResponse.type === "success") {
         localStorage.setItem("token", parseResponse.token);
+        navigate("/");
       } else {
         setError("root.serverError", {
           type: "401",
