@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Michroma&display=swap");
+
+body {
+  background-color: #161d26;
+  font-family: "Helvetica";
+}
+
+.login-title {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: -0.16px;
+  color: #5e6c84;
+}
+
+input.form-control {
+  font-family: "Helvetica", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+input.form-control:hover {
+  outline: 2px solid #4c9aff;
+}
+
+.btn-primary-kanboom {
+  background: #4c9aff;
+  font-weight: 700;
+  color: white;
+  border-radius: 8px;
+}
+
+.btn-primary-kanboom:hover {
+  background: #3264a5;
+}
+
+.login-paragraph {
+  font-family: "Helvetica", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 29px;
+  color: #0052cc;
+}
+
+.credential-panel {
+  outline: 2px solid #cacfda;
+}
