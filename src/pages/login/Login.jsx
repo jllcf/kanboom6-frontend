@@ -4,6 +4,7 @@ import Loading from "../../utils/Loading";
 
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import backendURL from "../../config/backendURL";
 
 function Login() {
   const {
@@ -19,7 +20,7 @@ function Login() {
   const onSubmit = async (data) => {
     setIsLoading(true);
     try {
-      const response = await fetch("/api/login/", {
+      const response = await fetch(`${backendURL}/api/login/`, {
         headers: {
           "Content-Type": "application/json",
         },

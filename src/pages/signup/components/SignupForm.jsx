@@ -4,6 +4,7 @@ import logo from "../../../assets/logo.png";
 import Loading from "../../../utils/Loading";
 import { Link } from "react-router-dom";
 import { ErrorMessage } from "@hookform/error-message";
+import backendURL from "../../../config/backendURL";
 
 const SignupForm = ({ setSignupSuccess }) => {
   const {
@@ -19,7 +20,7 @@ const SignupForm = ({ setSignupSuccess }) => {
     const body = { user_email: data.user_email, user_password: data.user_password, user_name: data.user_name };
     try {
       setIsLoading(true);
-      const response = await fetch("/api/users/", {
+      const response = await fetch(`${backendURL}/api/users/`, {
         headers: {
           "Content-Type": "application/json",
         },
