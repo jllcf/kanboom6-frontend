@@ -55,7 +55,7 @@ const SignupForm = ({ setSignupSuccess }) => {
             </div>
             <div className="row">
               <div className="col-12 d-flex justify-content-center">
-                <h3 className="login-title">Crie Sua Conta!</h3>
+                <h3 className="card-title">Crie Sua Conta!</h3>
               </div>
             </div>
             {errors && errors?.root?.serverError?.message && (
