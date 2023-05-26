@@ -5,11 +5,18 @@ body {
   font-family: "Helvetica";
 }
 
-.login-title {
+.card-title {
   font-weight: 700;
   font-size: 16px;
   line-height: 28px;
   letter-spacing: -0.16px;
+  color: #5e6c84;
+}
+
+.card-text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
   color: #5e6c84;
 }
 
@@ -45,4 +52,27 @@ input.form-control:hover {
 
 .credential-panel {
   outline: 2px solid #cacfda;
+}
+
+.onboarding-button {
+  font-family: "Helvetica";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 29px;
+  color: #4c9aff;
+  border-color: transparent;
+  background-color: white;
+}
+
+.onboarding-button:active {
+  color: white;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.onboarding-button:hover {
+  color: #2c5994;
+  border-color: transparent;
+  background-color: transparent;
 }

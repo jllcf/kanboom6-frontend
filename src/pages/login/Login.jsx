@@ -55,7 +55,7 @@ function Login() {
           </div>
           <div className="row">
             <div className="col-12 d-flex justify-content-center">
-              <h3 className="login-title">Fazer Login no Kanboom</h3>
+              <h3 className="card-title">Fazer Login no Kanboom</h3>
             </div>
           </div>
           {errors && errors?.root?.serverError?.message && (
