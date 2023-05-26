@@ -3,6 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import { Image, ModalBody } from "react-bootstrap";
 import onboardingScenes from "./utils/onboardingScenes";
 import handleOnboardSceneChange from "./functions/handleOnboardSceneChange";
+import saveOnboarding from "./functions/saveOnboarding";
 
 const Onboarding = () => {
   const [showOnboarding, setShowOnboarding] = useState(false);
@@ -29,9 +30,11 @@ const Onboarding = () => {
         </button>
         <button
           className="onboarding-button"
-          onClick={() => (onboardingScene === 4 ? setShowOnboarding(false) : setOnboardingScene(handleOnboardSceneChange(onboardingScene, "next")))}
+          onClick={() =>
+            onboardingScene === 4 ? saveOnboarding(setShowOnboarding) : setOnboardingScene(handleOnboardSceneChange(onboardingScene, "next"))
+          }
         >
-          {onboardingScene === 4 ? "Iniciar" : "Próximo"}
+          {onboardingScene === 4 ? "Finalizar" : "Próximo"}
         </button>
       </div>
     );
