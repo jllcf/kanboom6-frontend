@@ -65,6 +65,17 @@ input.form-control:hover {
   background-color: white;
 }
 
+.onboarding-button.skip-button {
+  font-family: "Helvetica";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
+  color: #4c9aff;
+  border-color: transparent;
+  background-color: white;
+}
+
 .onboarding-button:active {
   color: white;
   border-color: transparent;

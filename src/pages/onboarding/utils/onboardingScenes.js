@@ -28,14 +28,8 @@ const onboardingScenes = (scene) => {
         paragraph:
           "Cards representam as tarefas ou funcionalidades que você irá monitorar. Basta clicar no botão ”Adicionar Card” na parte inferior de uma coluna para adicionar seu novo card.\n Você pode preencher também as estimativas de complexidade e tempo para te ajudar a se planejar no seu dia-a-dia!",
       };
-
     default:
-      return {
-        title: "Conheça o Kanboom",
-        image: "../../assets/onboarding-1.png",
-        paragraph:
-          "Kanboom é uma plataforma de gestão de tarefas 100% voltado para pessoas de desenvolvimento! \n Simples de usar e pronto para começar a melhorar seu fluxo de trabalho.",
-      };
+      break;
   }
 };
 
